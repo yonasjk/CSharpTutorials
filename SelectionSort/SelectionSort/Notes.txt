@@ -1,0 +1,8 @@
+﻿
+/********************************************************************************************************/
+
+Selection sort is an algorithm of sorting an array where it loop from the start of the loop, and check 
+through other elements to find the minimum value. After the end of the first iteration, the minimum 
+value is swapped with the current element. The iteration then continues from the 2nd element and so on.
+
+/********************************************************************************************************/

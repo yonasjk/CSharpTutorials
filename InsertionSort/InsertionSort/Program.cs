@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsertionSort
+namespace Algorithms_InsertionSort
 {
     class Program
     {
@@ -42,5 +42,6 @@ namespace InsertionSort
                 }
             }
         }
+
     }
 }

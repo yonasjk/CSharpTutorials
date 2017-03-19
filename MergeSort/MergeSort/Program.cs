@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 
-namespace MergeSort
+namespace Algorithms_MergeSort
 {
-    class MergeSort
+    class Program
     {
         static public void MainMerge(int[] numbers, int left, int mid, int right)
 

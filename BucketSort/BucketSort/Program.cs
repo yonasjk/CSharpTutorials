@@ -1,81 +1,64 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace BucketSort
+
+namespace Algorithms_BucketSort
 {
-    static void Main(string[] args)
+    class Program
     {
-        double[] array = { 0.37, 0.25, 0.86, 0.23, 0.09, 0.21, 0.17, 0.71 };
-        double[] sortedArray = BucketSort(array);
 
-        // PrintResult(sortedArray);
-    }
-
-    public static double[] BucketSort(double[] array)
-    {
-        List<List<double>> buckets = new List<List<double>>();
-        InitializeBuckets(buckets);
-
-        Scatter(array, buckets);
-
-        int i = 0;
-        foreach (List<double> bucket in buckets)
+        public static void BucketSort(ref int[] data)
         {
-            double[] arr = bucket.ToArray();
-            InsertionSort(arr);
+            int minValue = data[0];
+            int maxValue = data[0];
 
-            foreach (double d in arr)
+            for (int i = 1; i < data.Length; i++)
             {
-                array[i++] = d;
+                if (data[i] > maxValue)
+                    maxValue = data[i];
+                if (data[i] < minValue)
+                    minValue = data[i];
+            }
+
+            List<int>[] bucket = new List<int>[maxValue - minValue + 1];
+
+            for (int i = 0; i < bucket.Length; i++)
+            {
+                bucket[i] = new List<int>();
+            }
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                bucket[data[i] - minValue].Add(data[i]);
+            }
+
+            int k = 0;
+            for (int i = 0; i < bucket.Length; i++)
+            {
+                if (bucket[i].Count > 0)
+                {
+                    for (int j = 0; j < bucket[i].Count; j++)
+                    {
+                        data[k] = bucket[i][j];
+                        k++;
+                    }
+                }
             }
         }
 
-        return array;
-    }
 
-    public static void Scatter(double[] array, List<List<double>> buckets)
-    {
-        foreach (double value in array)
+        static void Main()
         {
-            int bucketNumber = GetBucketNumber(value);
-            buckets[bucketNumber].Add(value);
-        }
-    }
+            int[]
+            data = new int[] { -1, 25, -58964, 8547, -119, 0, 78596 };
 
-    public static void InsertionSort(double[] array)
-    {
-        int j;
-        double temp;
+            BucketSort(ref data);
 
-        for (int i = 1; i < array.Length; i++)
-        {
-            j = i;
-            while (j > 0 && array[j] < array[j - 1])
-            {
-                temp = array[j];
-                array[j] = array[j - 1];
-                array[j - 1] = temp;
-                j--;
-            }
-        }
-    }
-
-    public static int GetBucketNumber(double value)
-    {
-        double val = value * 10;
-        int bucketNumber = (int)Math.Floor(val);
-        return bucketNumber;
-    }
-
-    public static void InitializeBuckets(List<List<double>> buckets)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            List<double> a = new List<double>();
-            buckets.Add(a);
         }
     }
 }

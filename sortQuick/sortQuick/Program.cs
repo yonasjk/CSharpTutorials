@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace sortQuick
+namespace Algorithmns_QuickSort
 {
     class quickSort
     {

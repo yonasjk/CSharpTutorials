@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalindromicStrings
+namespace Algorithmns_PalindromicStrings
 {
     class Program
     {

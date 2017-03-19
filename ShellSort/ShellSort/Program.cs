@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace ShellSort
+namespace Algorithmns_ShellSort
 {
     public class SortShell
     {

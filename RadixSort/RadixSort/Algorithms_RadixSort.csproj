@@ -7,8 +7,8 @@
     <ProjectGuid>{DEB1F42F-2F03-4894-AD84-71B833AA9F0D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RadixSort</RootNamespace>
-    <AssemblyName>RadixSort</AssemblyName>
+    <RootNamespace>Algorithmns_RadixSort</RootNamespace>
+    <AssemblyName>Algorithmns_RadixSort</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Algorithms_RadixSort.Example</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -1,80 +1,75 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace HeapSort
 {
-    public class Program
+
+    class Program
     {
-        public List myList = new List();
-        public int myLen;
-
-        public heap(List myList, int myLen)
+        static void Main(string[] args)
         {
-            this.myLen = myLen;
-            this.myList = myList;
+            int[] arr = { 10, 64, 7, 52, 32, 18, 2, 48 };
+            HeapSort hs = new HeapSort();
+            hs.PerformHeapSort(arr);
+            Console.ReadLine();
         }
+    }
 
-        public void heapsort()
+    class HeapSort
+    {
+        private int heapSize;
+
+        private void BuildHeap(int[] arr)
         {
-            int iValue;
-
-            for (int i = myLen / 2; i >= 0; i--)
+            heapSize = arr.Length - 1;
+            for (int i = heapSize / 2; i >= 0; i--)
             {
-                adjust(i, myLen - 1);
-            }
-
-            for (int i = myLen - 2; i >= 0; i--)
-            {
-                iValue = myList[i + 1];
-                myList[i + 1] = myList[0];
-                myList[0] = iValue;
-                adjust(0, i);
+                Heapify(arr, i);
             }
         }
 
-        private void adjust(int i, int n)
+        private void Swap(int[] arr, int x, int y)//function to swap elements
         {
-            int iPosition;
-            int iChange;
-
-            iPosition = myList[i];
-            iChange = 2 * i;
-            while (iChange <= n)
-            {
-                if (iChange < n && myList[iChange] < myList[iChange + 1])
-                {
-                    iChange++;
-                }
-                if (iPosition >= myList[iChange])
-                {
-                    break;
-                }
-                myList[iChange / 2] = myList[iChange];
-                iChange *= 2;
-            }
-            myList[iChange / 2] = iPosition;
+            int temp = arr[x];
+            arr[x] = arr[y];
+            arr[y] = temp;
         }
-
-        public string printList()
+        private void Heapify(int[] arr, int index)
         {
-            string myValue = "";
-            for (int i = 0; i < myLen; i++)
+            int left = 2 * index;
+            int right = 2 * index + 1;
+            int largest = index;
+
+            if (left <= heapSize && arr[left] > arr[index])
             {
-                myValue += myList[i] + " ";
+                largest = left;
             }
-            return myValue;
+
+            if (right <= heapSize && arr[right] > arr[largest])
+            {
+                largest = right;
+            }
+
+            if (largest != index)
+            {
+                Swap(arr, index, largest);
+                Heapify(arr, largest);
+            }
         }
-
-        public static void Main()
+        public void PerformHeapSort(int[] arr)
         {
-            List myList = new List(new int[] { 2, 5, 1, 1990, 0, 6, 9, 3, 7, 7, 4, 8, 500, 678 });
-            int myLen = myList.Count;
-            heap myHeap = new heap(myList, myLen);
-
-            Console.WriteLine("Original: {0}", myHeap.printList());
-            myHeap.heapsort();
-            Console.WriteLine("Sorted: {0}", myHeap.printList());
+            BuildHeap(arr);
+            for (int i = arr.Length - 1; i >= 0; i--)
+            {
+                Swap(arr, 0, i);
+                heapSize--;
+                Heapify(arr, 0);
+            }
+            DisplayArray(arr);
+        }
+        private void DisplayArray(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            { Console.Write("[{0}]", arr[i]); }
         }
     }
 
